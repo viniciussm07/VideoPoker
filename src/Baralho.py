@@ -42,6 +42,7 @@ class Baralho(object):
 def main():
     baralho = Baralho()
     print(baralho.__str__())
+    return 0
 
 if __name__ == "__main__":
     main()
