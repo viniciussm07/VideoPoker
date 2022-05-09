@@ -6,13 +6,13 @@ class Carta(object):
 
     def __str__(self):
         simbolo = self.getSimbolo()
-        if simbolo == 13:
+        if simbolo == 14:
             simbolo = "A"
-        elif simbolo == 12:
+        elif simbolo == 13:
             simbolo = "K"
-        elif simbolo == 11:
+        elif simbolo == 12:
             simbolo = "Q"
-        elif simbolo == 10:
+        elif simbolo == 11:
             simbolo = "J"
         
         naipe = self.getNaipe()

@@ -4,7 +4,7 @@ import random
 class Baralho(object):
     def __init__(self):
         self.__naipes = ["♥", "♠", "♦", "♣"]
-        self.__simbolos = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+        self.__simbolos = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
         self.baralho = []
 
         for i in range(len(self.__naipes)):
@@ -16,18 +16,14 @@ class Baralho(object):
         #TODO arrumar função para printar as cartas com as quebras de linha certas
         baralho = self.baralho
         s = ""
-        for i in range(52):
+        for i in range(5):
             base = i * 8
-            if i%5 == 0:
-                print("\n")
             for c in baralho:
                 p = str(c)
                 s += p[base:base+7]
                 s += "    "
             s += "\n"
         return s
-
-    # TODO trocar cartas
 
     def getBaralho(self):
         return self.baralho
@@ -50,7 +46,8 @@ class Baralho(object):
 
 def main():
     baralho = Baralho()
-    print(baralho.__str__())
+    print(len(baralho.baralho))
+    print(baralho)
     return 0
 
 if __name__ == "__main__":

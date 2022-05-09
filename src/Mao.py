@@ -3,8 +3,7 @@ import Baralho as brl
 
 class Mao(object):
 
-    def __init__(self, baralho, n=5):
-        self.__saldo = 200
+    def __init__(self, baralho):
         self.aposta = 0
         self.mao = baralho.getMao()
 
@@ -19,12 +18,13 @@ class Mao(object):
                 s += "    "
             s += "\n"
         return s
+    
     def getMao(self, n=5):
         return self.mao
 
     def trocarCartas(self, baralho):
         troca = input(
-            "Insira quais cartas deseja trocar separadas por espaço\n").split()
+            "Insira quais cartas deseja trocar separadas por espaço, caso não queira trocar, apenas precione ENTER\n").split()
 
         for i in range(len(troca)):
             try:
@@ -35,63 +35,45 @@ class Mao(object):
         for i in range(len(troca)):
             self.mao[troca[i]] = baralho.pegarCarta()
 
-    def add(self):
+    def add(self, saldo):
         copiaMao = self.mao.copy()
         copiaMao = Mao.ordena(copiaMao)
 
         if Mao.royalStraightFlush(copiaMao):
-            self.__saldo += self.aposta * 200
-            print("Parabéns!!!!\nVocê acabou de fazer um Royal Straight Flush!\nSeu saldo atua é de {:d}".format(
-                self.__saldo))
+            saldo += self.aposta * 200
+            print("Parabéns!!!!\nVocê acabou de fazer um Royal Straight Flush!")
         elif Mao.straightFlush(copiaMao):
-            self.__saldo += self.aposta * 100
-            print("Parabéns!\nVocê acabou de fazer um Straight Flush!\nSeu saldo atua é de {:d}".format(
-                self.__saldo))
+            saldo += self.aposta * 100
+            print("Parabéns!\nVocê acabou de fazer um Straight Flush!")
         elif Mao.quadra(copiaMao):
-            self.__saldo += self.aposta * 50
-            print("Parabéns!\nVocê acabou de fazer um Uma Quadra!\nSeu saldo atua é de {:d}".format(
-                self.__saldo))
+            saldo += self.aposta * 50
+            print("Parabéns!\nVocê acabou de fazer um Uma Quadra!")
         elif Mao.fullHand(copiaMao):
-            self.__saldo += self.aposta * 20
-            print("Parabéns!\nVocê acabou de fazer um Full Hand!\nSeu saldo atua é de {:d}".format(
-                self.__saldo))
+            saldo += self.aposta * 20
+            print("Parabéns!\nVocê acabou de fazer um Full Hand!")
         elif Mao.flush(copiaMao):
-            self.__saldo += self.aposta * 10
-            print("Parabéns!\nVocê acabou de fazer um Flush!\nSeu saldo atua é de {:d}".format(
-                self.__saldo))
+            saldo += self.aposta * 10
+            print("Parabéns!\nVocê acabou de fazer um Flush!")
         elif Mao.straight(copiaMao):
-            self.__saldo += self.aposta * 5
-            print("Você acabou de fazer um Straight!\nSeu saldo atua é de {:d}".format(
-                self.__saldo))
+            saldo += self.aposta * 5
+            print("Você acabou de fazer um Straight!")
         elif Mao.trinca(copiaMao):
-            self.__saldo += self.aposta * 2
-            print("Você acabou de fazer uma Trinca!\nSeu saldo atua é de {:d}".format(
-                self.__saldo))
+            saldo += self.aposta * 2
+            print("Você acabou de fazer uma Trinca!")
         elif Mao.doisPares(copiaMao):
-            self.__saldo += self.aposta
-            print("Você acabou de fazer um Par!\nSeu saldo atua é de {:d}".format(
-                self.__saldo))
+            saldo += self.aposta
+            print("Você acabou de fazer um Par!")
         else:
-            self.__saldo -= self.aposta
-            print("Infelizmente você não conseguiu fazer nenhuma combinação :( \nSeu saldo atual é de: {:d}".format(
-                self.__saldo))
-        return
+            saldo -= self.aposta
+            print("Infelizmente você não conseguiu fazer nenhuma combinação :(")
+        return saldo
 
-    def getSaldo(self):
-        return self.__saldo
-
-    def setAposta(self, aposta):
-        if self.__saldo < aposta:
+    def setAposta(self, saldo, aposta):
+        if saldo < aposta:
             print("Faça uma aposta menor ou igual ao seu saldo")
             return
         else:
             self.aposta = aposta
-
-    def fimDeJogo(self):
-        if self.__saldo == 0:
-            return True
-        else:
-            return False
 
     @staticmethod
     def ordena(mao):
@@ -152,7 +134,7 @@ class Mao(object):
 
     @staticmethod
     def doisPares(mao):
-        if (mao[0].getSimbolo() == mao[1].getSimbolo()) or (mao[4].getSimbolo() == mao[3].getSimbolo()):
+        if (mao[0].getSimbolo() == mao[1].getSimbolo()) or (mao[1].getSimbolo() == mao[2].getSimbolo()) or (mao[2].getSimbolo() == mao[3].getSimbolo()) or (mao[3].getSimbolo() == mao[4].getSimbolo()):
             return True
         return False
 
@@ -160,6 +142,7 @@ class Mao(object):
 def main():
     baralho = brl.Baralho()
     mao = Mao(baralho)
+    mao.setAposta(20)
 
     print(mao)
 
