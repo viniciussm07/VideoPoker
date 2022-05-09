@@ -13,6 +13,7 @@ class Baralho(object):
         Baralho.embaralha(self.baralho)
 
     def __str__(self):
+        #TODO arrumar função para printar as cartas com as quebras de linha certas
         baralho = self.baralho
         s = ""
         for i in range(52):
