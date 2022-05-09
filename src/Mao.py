@@ -21,7 +21,17 @@ class Mao(object):
     
     def getMao(self, n = 5):
         return self.mao
-        
+
+    def trocarCartas(self, baralho):
+        troca = input("Insira quais cartas deseja trocar separadas por espaço\n").split()
+
+        for i in range(len(troca)):
+            try:
+                troca[i] = int(troca[i]) - 1
+            except:
+                print("Você não digitou um número ou digitou algum número maior que a quantidade de cartas em sua mão")
+        for i in range(len(troca)):
+            self.mao[troca[i]] = baralho.pegarCarta()
 
     def add(self):
         copiaMao = self.mao.copy()
@@ -32,6 +42,7 @@ class Mao(object):
             print("Parabéns!!!!\nVocê acabou de fazer um Royal Straight Flush!\nSeu saldo atua é de {:d}".format(self.__saldo))
         elif Mao.straightFlush(copiaMao):
             self.__saldo += self.aposta * 100
+            print("Parabéns!\nVocê acabou de fazer um Straight Flush!\nSeu saldo atua é de {:d}".format(self.__saldo))
         elif Mao.quadra(copiaMao):
             self.__saldo += self.aposta * 50
         elif Mao.fullHand(copiaMao):
@@ -118,8 +129,11 @@ class Mao(object):
 def main():
     baralho = brl.Baralho()
     mao = Mao(baralho)
-    mao.add()
+    print(mao)
+    # mao.add()
     # print(baralho)
+    mao.trocarCartas(baralho)
+    # print(baralho.pegarCarta())
     print(mao)
 
     return

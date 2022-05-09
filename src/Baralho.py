@@ -38,6 +38,8 @@ class Baralho(object):
             self.baralho.pop(0)
         return mao
 
+    def pegarCarta(self):
+        return self.baralho.pop(0)
 
     @staticmethod
     def embaralha(baralho):
