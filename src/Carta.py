@@ -6,10 +6,19 @@ class Carta(object):
 
     def __str__(self):
         simbolo = self.getSimbolo()
+        if simbolo == 13:
+            simbolo = "A"
+        elif simbolo == 12:
+            simbolo = "K"
+        elif simbolo == 11:
+            simbolo = "Q"
+        elif simbolo == 10:
+            simbolo = "J"
+        
         naipe = self.getNaipe()
-        s = "+-----+\n|     |\n| " + simbolo
+        s = "+-----+\n|     |\n| " + str(simbolo)
 
-        if simbolo == "10":
+        if simbolo == 10 :
             s += naipe + " |\n|     |\n+-----+\n"
         else: 
             s += " " + naipe + " |\n|     |\n+-----+\n"

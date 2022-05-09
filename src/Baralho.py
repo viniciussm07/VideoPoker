@@ -4,7 +4,7 @@ import random
 class Baralho(object):
     def __init__(self):
         self.__naipes = ["♥", "♠", "♦", "♣"]
-        self.__simbolos = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+        self.__simbolos = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
         self.baralho = []
 
         for i in range(len(self.__naipes)):
@@ -13,17 +13,23 @@ class Baralho(object):
         Baralho.embaralha(self.baralho)
 
     def __str__(self):
-        mao = self.getMao()
+        baralho = self.baralho
         s = ""
-        for i in range(5):
+        for i in range(52):
             base = i * 8
-            for c in mao:
+            if i%5 == 0:
+                print("\n")
+            for c in baralho:
                 p = str(c)
                 s += p[base:base+7]
                 s += "    "
             s += "\n"
         return s
 
+    # TODO trocar cartas
+
+    def getBaralho(self):
+        return self.baralho
 
     def getMao(self, n = 5):
         mao = []

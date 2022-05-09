@@ -5,6 +5,7 @@ def main():
     #trocar cartas, nenhuma, 1 ou 2x
     #verificar pontuação
     #atualizar saldo
+    return
 
 
 if __name__ == "main":
