@@ -19,7 +19,7 @@ class Mao(object):
             s += "\n"
         return s
     
-    def getMao(self, n=5):
+    def getMao(self):
         return self.mao
 
     def trocarCartas(self, baralho):

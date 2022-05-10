@@ -10,19 +10,19 @@ class Baralho(object):
         for i in range(len(self.__naipes)):
             for j in range(len(self.__simbolos)):
                 self.baralho.append((crt.Carta(self.__naipes[i], self.__simbolos[j])))
-        Baralho.embaralha(self.baralho)
+        # Baralho.embaralha(self.baralho)
 
     def __str__(self):
-        #TODO arrumar função para printar as cartas com as quebras de linha certas
         baralho = self.baralho
         s = ""
-        for i in range(5):
-            base = i * 8
-            for c in baralho:
-                p = str(c)
-                s += p[base:base+7]
-                s += "    "
-            s += "\n"
+        for a in range(0, 52, 13):
+            for i in range(5):
+                base = i * 8
+                for c in range(a, a + 13):
+                    p = str(baralho[c])
+                    s += p[base:base+7]
+                    s += "    "
+                s += "\n"
         return s
 
     def getBaralho(self):
@@ -36,7 +36,8 @@ class Baralho(object):
         return mao
 
     def pegarCarta(self):
-        return self.baralho.pop(0)
+        cartaRetirada = self.baralho.pop(0)
+        return cartaRetirada
 
     @staticmethod
     def embaralha(baralho):
@@ -45,6 +46,7 @@ class Baralho(object):
 
 
 def main():
+    # OBS: usar um terminal com um tamanho de pelo menos 143 x 22 para visualizar o baralho inteiro
     baralho = Baralho()
     print(len(baralho.baralho))
     print(baralho)
