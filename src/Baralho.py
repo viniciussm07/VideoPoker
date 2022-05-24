@@ -10,7 +10,7 @@ class Baralho(object):
         for i in range(len(self.__naipes)):
             for j in range(len(self.__simbolos)):
                 self.baralho.append((crt.Carta(self.__naipes[i], self.__simbolos[j])))
-        # Baralho.embaralha(self.baralho)
+        Baralho.embaralha(self.baralho)
 
     def __str__(self):
         baralho = self.baralho
